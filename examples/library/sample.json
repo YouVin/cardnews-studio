@@ -1,0 +1,146 @@
+{
+  "project": "모닝루틴 드립백 — 카드뉴스 4장 (샘플)",
+  "canvas": { "width": 1080, "height": 1350 },
+  "design": {
+    "page": "#FFFFFF", "surface": "#F4F1EC", "ink": "#1A1512", "inkSub": "#7A7069",
+    "accent": "#C8722E", "brand": "#2F2A26", "sub": "#4A6B52",
+    "radius": 18, "pad": 88, "gap": 26
+  },
+  "prd": {
+    "mode": "신규",
+    "oneLine": "출근 전 3분에 맞춘 드립백 커피를 소개하는 카드뉴스 4장",
+    "goal": "아침에 커피를 포기하던 사람이 드립백을 대안으로 인식하게 한다",
+    "background": "아침에 커피를 내려 마시고 싶지만 시간이 없어 포기한다. 인스턴트는 맛이 아쉽고 카페는 돈과 시간이 든다. 그 사이를 메우는 선택지가 있다는 걸 모른다.",
+    "problems": ["원두를 내릴 시간이 없다", "인스턴트는 맛이 아쉽다", "매일 카페는 부담스럽다"],
+    "target": {
+      "persona": "출근 준비가 늘 촉박한 직장인",
+      "situation": "아침에 커피를 포기하고 나온 날 저녁, 대안을 검색하는 순간",
+      "awareness": "문제인식",
+      "desire": "번거롭지 않으면서 맛은 포기하지 않는 아침 커피"
+    },
+    "coreMessage": "3분이면 내려 마시는 커피가 된다",
+    "tone": "담백하게. 과장 없이 시간과 맛만 이야기한다",
+    "success": [
+      { "goal": "스크롤을 멈추게 한다", "metric": "노출 대비 프로필 방문율" },
+      { "goal": "저장을 유도한다", "metric": "저장 수" }
+    ],
+    "scope": {
+      "in": ["3분 추출 과정", "원두 대비 간편함", "정기배송 안내"],
+      "out": ["원산지·로스팅 상세 — 이번 목적은 진입 장벽 낮추기라 정보량을 늘리면 역효과",
+              "가격 비교 — 경쟁사 언급 없이 진행", "카페인 함량 — 자료 미확보"]
+    },
+    "improvements": [
+      "3번 카드에 다시 볼 정보가 약하다. 물 온도·용량 같은 기준표를 넣으면 저장 유도가 강해진다",
+      "표지가 제품이 아니라 상황으로 시작하는지 확인할 것. 제품 사진이 먼저 오면 광고로 읽힌다"
+    ]
+  },
+  "features": [
+    { "no": "1", "name": "도입 설계", "desc": "포기했던 경험을 먼저 꺼낸다",
+      "children": [
+        { "no": "1.1", "name": "상황형 후킹", "desc": "제품명 대신 아침 장면", "cards": ["C1"] },
+        { "no": "1.2", "name": "시간 배지", "desc": "3분이라는 숫자를 선점", "cards": ["C1"] } ] },
+    { "no": "2", "name": "문제 정의", "desc": "대안들이 왜 아쉬운지 정리",
+      "children": [
+        { "no": "2.1", "name": "선택지 나열", "desc": "원두·인스턴트·카페", "cards": ["C2"] } ] },
+    { "no": "3", "name": "해법 제시", "desc": "추출 과정을 3단계로 압축",
+      "children": [
+        { "no": "3.1", "name": "단계 비교", "desc": "원두 방식과 나란히", "cards": ["C3"] } ] },
+    { "no": "4", "name": "전환 유도", "desc": "행동 하나만 요구",
+      "children": [
+        { "no": "4.1", "name": "단일 CTA", "desc": "프로필 방문", "cards": ["C4"] } ] }
+  ],
+  "flow": {
+    "groups": [
+      { "name": "진입", "nodes": [
+        { "id": "N1", "label": "피드 노출", "type": "start" },
+        { "id": "N2", "label": "C1 상황 인지", "type": "card" } ] },
+      { "name": "이해", "nodes": [
+        { "id": "N3", "label": "C2 대안 검토", "type": "card" },
+        { "id": "N4", "label": "C3 과정 확인", "type": "card" } ] },
+      { "name": "전환", "nodes": [
+        { "id": "N5", "label": "C4 CTA", "type": "card" },
+        { "id": "N6", "label": "프로필 방문", "type": "action" },
+        { "id": "N7", "label": "이탈", "type": "exit" } ] }
+    ],
+    "edges": [
+      { "from": "N1", "to": "N2" }, { "from": "N2", "to": "N3" },
+      { "from": "N3", "to": "N4" }, { "from": "N4", "to": "N5" },
+      { "from": "N5", "to": "N6", "label": "더 보기" },
+      { "from": "N3", "to": "N7", "label": "관심 없음" }
+    ],
+    "dropoff": "2번 카드에서 3번으로 넘어가는 지점. 대안이 아쉽다는 데까지는 동의해도, 이 제품이 다르다는 근거가 약하면 여기서 멈춘다."
+  },
+  "cards": [
+    {
+      "id": "C1", "role": "후킹", "angle": "공감", "layout": "cover", "bg": "photo",
+      "photoLabel": "아침 주방",
+      "why": "제품이 아니라 포기했던 장면으로 연다. 제품 사진이 먼저 오면 광고로 읽힌다.",
+      "headline": "오늘도 커피는\n포기했나요",
+      "blocks": [
+        { "flex": 1 },
+        { "type": "pill", "text": "아침 3분", "fill": "accent", "color": "white", "size": 24 },
+        { "type": "text", "text": "오늘도 커피는", "size": 80, "maxLines": 1, "color": "white" },
+        { "type": "text", "text": "포기했나요", "size": 80, "maxLines": 1, "color": "accent", "gapAfter": 20 },
+        { "type": "text", "text": "출근 준비 중에도 내려 마실 수 있습니다", "size": 30, "weight": "regular", "color": "white" }
+      ]
+    },
+    {
+      "id": "C2", "role": "문제 제기", "angle": "공감", "layout": "list", "bg": "page",
+      "why": "대안이 왜 아쉬운지 먼저 정리해야 다음 장이 해법으로 읽힌다.",
+      "headline": "매번 하나씩 아쉬웠습니다",
+      "blocks": [
+        { "type": "pill", "text": "선택지", "fill": "surface", "color": "accent", "size": 24 },
+        { "type": "text", "text": "매번 하나씩\n아쉬웠습니다", "size": 64, "maxLines": 2, "color": "ink", "gapAfter": 20 },
+        { "type": "text", "text": "맛과 시간 중 하나는 늘 포기해야 했습니다", "size": 29, "weight": "regular", "color": "inkSub", "gapAfter": 40 },
+        { "type": "box", "fill": "surface", "pad": 30, "bar": "accent", "children": [
+          { "type": "text", "text": "원두를 갈아 내리면 15분", "size": 30, "color": "ink" } ] },
+        { "type": "box", "fill": "surface", "pad": 30, "bar": "accent", "children": [
+          { "type": "text", "text": "인스턴트는 향이 남지 않는다", "size": 30, "color": "ink" } ] },
+        { "type": "box", "fill": "surface", "pad": 30, "bar": "accent", "children": [
+          { "type": "text", "text": "매일 카페는 시간과 비용이 든다", "size": 30, "color": "ink" } ] },
+        { "flex": 1 },
+        { "type": "photo", "h": 280, "label": "출근 준비 장면", "radius": 18 }
+      ]
+    },
+    {
+      "id": "C3", "role": "해법", "angle": "편의", "layout": "compare", "bg": "page",
+      "why": "원두 방식과 나란히 놓아야 3분이라는 숫자가 체감된다.",
+      "headline": "같은 원두, 다른 3분",
+      "blocks": [
+        { "type": "pill", "text": "추출 과정", "fill": "accent", "color": "white", "size": 24 },
+        { "type": "text", "text": "같은 원두,\n다른 3분", "size": 64, "maxLines": 2, "color": "ink", "gapAfter": 18 },
+        { "type": "text", "text": "분쇄와 세척 과정을 덜어냈습니다", "size": 29, "weight": "regular", "color": "inkSub", "gapAfter": 36 },
+        { "type": "row", "gap": 22, "widths": [1, 1], "children": [
+          { "type": "box", "fill": "surface", "pad": 28, "children": [
+            { "type": "pill", "text": "원두", "fill": "inkSub", "color": "white", "size": 22, "align": "CENTER" },
+            { "type": "photo", "h": 170, "label": "그라인더", "radius": 12 },
+            { "type": "text", "text": "원두 계량과 분쇄", "size": 25, "weight": "regular", "color": "ink" },
+            { "type": "text", "text": "드리퍼 세척 필요", "size": 25, "weight": "regular", "color": "ink" } ] },
+          { "type": "box", "fill": "surface", "pad": 28, "children": [
+            { "type": "pill", "text": "드립백", "fill": "accent", "color": "white", "size": 22, "align": "CENTER" },
+            { "type": "photo", "h": 170, "label": "드립백", "radius": 12 },
+            { "type": "text", "text": "컵에 걸고 물만 붓기", "size": 25, "weight": "regular", "color": "ink" },
+            { "type": "text", "text": "버리면 정리 끝", "size": 25, "weight": "regular", "color": "ink" } ] }
+        ] },
+        { "flex": 1 },
+        { "type": "box", "fill": "accent", "pad": 30, "children": [
+          { "type": "text", "text": "덜어낸 건 과정이지 원두가 아닙니다", "size": 29, "color": "white", "align": "CENTER" } ] }
+      ]
+    },
+    {
+      "id": "C4", "role": "CTA", "angle": "혜택", "layout": "cta", "bg": "brand",
+      "why": "행동을 하나만 요구한다. 구매와 저장을 동시에 시키면 둘 다 하지 않는다.",
+      "headline": "내일 아침은",
+      "cta": "프로필에서 자세히 보기",
+      "blocks": [
+        { "type": "photo", "h": 400, "label": "드립백 제품 컷", "radius": 18 },
+        { "flex": 1 },
+        { "type": "text", "text": "내일 아침은", "size": 62, "maxLines": 1, "color": "white" },
+        { "type": "text", "text": "포기하지 마세요", "size": 62, "maxLines": 1, "color": "accent", "gapAfter": 24 },
+        { "type": "text", "text": "모닝루틴 드립백 · 정기배송", "size": 28, "weight": "regular", "color": "white", "gapAfter": 36 },
+        { "type": "box", "fill": "accent", "pad": 30, "radius": 56, "children": [
+          { "type": "text", "text": "프로필에서 자세히 보기", "size": 32, "color": "white", "align": "CENTER" } ] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,445 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "카드뉴스 기획 스펙 — 피그마 플러그인 입력",
+  "type": "object",
+  "required": [
+    "project",
+    "prd",
+    "features",
+    "flow",
+    "cards"
+  ],
+  "properties": {
+    "project": {
+      "type": "string"
+    },
+    "canvas": {
+      "type": "object",
+      "properties": {
+        "width": {
+          "type": "number",
+          "default": 1080
+        },
+        "height": {
+          "type": "number",
+          "default": 1350
+        }
+      }
+    },
+    "prd": {
+      "type": "object",
+      "required": [
+        "oneLine",
+        "background",
+        "target",
+        "success"
+      ],
+      "properties": {
+        "oneLine": {
+          "type": "string",
+          "description": "이 카드뉴스 세트가 무엇인가, 한 문장"
+        },
+        "goal": {
+          "type": "string",
+          "description": "독자에게 시키려는 단 하나의 행동"
+        },
+        "background": {
+          "type": "string"
+        },
+        "problems": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "target": {
+          "type": "object",
+          "properties": {
+            "persona": {
+              "type": "string"
+            },
+            "situation": {
+              "type": "string",
+              "description": "이 콘텐츠를 보게 되는 순간"
+            },
+            "awareness": {
+              "enum": [
+                "무인식",
+                "문제인식",
+                "솔루션인식",
+                "제품인식"
+              ]
+            },
+            "desire": {
+              "type": "string"
+            }
+          }
+        },
+        "coreMessage": {
+          "type": "string"
+        },
+        "tone": {
+          "type": "string"
+        },
+        "success": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "goal",
+              "metric"
+            ],
+            "properties": {
+              "goal": {
+                "type": "string"
+              },
+              "metric": {
+                "type": "string",
+                "description": "측정 방법만. 실측값은 넣지 않는다"
+              }
+            }
+          }
+        },
+        "scope": {
+          "type": "object",
+          "properties": {
+            "in": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "out": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "improvements": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "역구성이면 결과물의 약점, 신규면 제작 전 확인해야 할 것"
+        },
+        "mode": {
+          "enum": [
+            "역구성",
+            "신규"
+          ],
+          "default": "역구성",
+          "description": "역구성=완성본에서 거꾸로 뽑은 문서 / 신규=제작 전에 먼저 쓰는 기획서"
+        }
+      }
+    },
+    "features": {
+      "type": "array",
+      "description": "카드뉴스의 구성 요소를 계층 트리로. no는 1 / 1.1 / 1.1.1",
+      "items": {
+        "type": "object",
+        "required": [
+          "no",
+          "name"
+        ],
+        "properties": {
+          "no": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "desc": {
+            "type": "string"
+          },
+          "cards": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "관련 카드 ID"
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "no",
+                "name"
+              ],
+              "properties": {
+                "no": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "desc": {
+                  "type": "string"
+                },
+                "cards": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "flow": {
+      "type": "object",
+      "required": [
+        "groups"
+      ],
+      "properties": {
+        "groups": {
+          "type": "array",
+          "description": "독자 여정의 단계. 가로 밴드 하나가 그룹 하나가 된다",
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "nodes"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "nodes": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "id",
+                    "label"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "enum": [
+                        "start",
+                        "card",
+                        "action",
+                        "exit"
+                      ],
+                      "default": "card"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "from",
+              "to"
+            ],
+            "properties": {
+              "from": {
+                "type": "string"
+              },
+              "to": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "dropoff": {
+          "type": "string",
+          "description": "이탈이 가장 많이 날 지점"
+        }
+      }
+    },
+    "cards": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "role",
+          "why",
+          "headline",
+          "layout"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^C[0-9]+$"
+          },
+          "role": {
+            "enum": [
+              "후킹",
+              "문제 제기",
+              "근거",
+              "해법",
+              "신뢰",
+              "CTA"
+            ]
+          },
+          "angle": {
+            "enum": [
+              "공감",
+              "두려움",
+              "혜택",
+              "편의",
+              "권위"
+            ]
+          },
+          "why": {
+            "type": "string"
+          },
+          "headline": {
+            "type": "string",
+            "maxLength": 24,
+            "description": "\\n 으로 줄을 나누면 첫 줄은 포인트 컬러, 둘째 줄은 어두운 색으로 그려진다"
+          },
+          "sub": {
+            "type": "string",
+            "maxLength": 50
+          },
+          "body": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 34
+            }
+          },
+          "cta": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "layout": {
+            "enum": [
+              "cover",
+              "text",
+              "list",
+              "table",
+              "compare",
+              "cta"
+            ]
+          },
+          "badge": {
+            "type": "string",
+            "description": "헤드라인 위 작은 라벨. 예: INFO, 사이즈 가이드"
+          },
+          "summary": {
+            "type": "string",
+            "description": "카드 하단 요약 박스. 이 카드에서 기억할 한 문장"
+          },
+          "compare": {
+            "type": "object",
+            "description": "layout이 compare일 때. 좌우 2열 비교",
+            "properties": {
+              "left": {
+                "type": "object",
+                "properties": {
+                  "label": {
+                    "type": "string"
+                  },
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "maxLength": 30
+                    }
+                  }
+                }
+              },
+              "right": {
+                "type": "object",
+                "properties": {
+                  "label": {
+                    "type": "string"
+                  },
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "maxLength": 30
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "bg": {
+            "type": "string",
+            "description": "page|surface|accent|brand|photo 또는 헥스"
+          },
+          "blocks": {
+            "type": "array",
+            "description": "있으면 layout 대신 이 배치대로 그린다",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "theme": {
+      "enum": [
+        "clean",
+        "soft",
+        "bold",
+        "editorial"
+      ],
+      "default": "clean",
+      "description": "시각 언어. clean=제품 소개 / soft=정보 정리 / bold=인사이트 / editorial=브랜드 스토리"
+    },
+    "design": {
+      "type": "object",
+      "description": "AI가 정하는 디자인 토큰. blocks 안에서 색 이름으로 참조한다",
+      "properties": {
+        "page": {
+          "type": "string"
+        },
+        "surface": {
+          "type": "string"
+        },
+        "ink": {
+          "type": "string"
+        },
+        "inkSub": {
+          "type": "string"
+        },
+        "accent": {
+          "type": "string"
+        },
+        "brand": {
+          "type": "string"
+        },
+        "sub": {
+          "type": "string"
+        },
+        "radius": {
+          "type": "number"
+        },
+        "pad": {
+          "type": "number"
+        },
+        "gap": {
+          "type": "number"
+        }
+      }
+    }
+  }
+}

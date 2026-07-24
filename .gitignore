@@ -1,0 +1,17 @@
+# 작업 자료와 결과물
+input/*
+!input/.gitkeep
+docs/*
+!docs/.gitkeep
+specs/*
+!specs/.gitkeep
+
+# 클라이언트 실물 예시 — 절대 커밋하지 않는다
+examples/private/
+
+*.svg
+!examples/**/*.svg
+.DS_Store
+Thumbs.db
+*.log
+node_modules/

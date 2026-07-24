@@ -1,0 +1,15 @@
+{
+  "name": "카드뉴스 기획 스튜디오",
+  "id": "cardnews-planning-studio",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "editorType": ["figma"],
+  "networkAccess": {
+    "allowedDomains": [
+      "https://api.anthropic.com",
+      "https://generativelanguage.googleapis.com"
+    ],
+    "reasoning": "사용자가 입력한 API 키로 기획 문서와 카피를 생성합니다."
+  }
+}
