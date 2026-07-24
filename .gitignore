@@ -15,3 +15,6 @@ examples/private/
 Thumbs.db
 *.log
 node_modules/
+
+examples/library/*.json
+!examples/library/sample.json
